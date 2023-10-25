@@ -1,0 +1,35 @@
+namespace: magento2
+magento2:
+  defines: runnable
+  metadata:
+    name: magento2
+    description: Magento 2 is a open-source e-commerce platform written in PHP.
+    icon: https://static.magento.com/sites/all/themes/magento/logo.svg
+  containers:
+    magento2:
+      build: .
+      image: env-1767.registry.local/magento2:2.4-develop-2932016
+  services:
+    web:
+      container: magento2
+      port: 80
+      host-port: 80
+      publish: false
+      protocol: TCP
+      description: http/port
+  variables:
+    enable-iis-rewrites:
+      env: ENABLE_IIS_REWRITES
+      type: int
+      description: Enable or disable IIS rewrites
+      value: 2137
+    mage-profiler:
+      env: MAGE_PROFILER
+      type: int
+      description: Enable or disable the MAGE profiler
+      value: 2137
+    http-x-requested-with:
+      env: HTTP_X_REQUESTED_WITH
+      type: string
+      description: Define the HTTP Request
+      value: '!!!SETME!!!'
